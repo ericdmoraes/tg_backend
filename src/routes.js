@@ -1,7 +1,9 @@
 import { Router } from 'express';
+import Controller from './app/controllers/UsersController';
 
 const routes = new Router();
+const baseUrl = '/api/v1/users';
 
-routes.get('/', (req, res) => res.json({ message: 'ok with eric' }));
+routes.get(baseUrl, Controller.index);
 
 export default routes;
