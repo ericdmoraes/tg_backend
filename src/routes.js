@@ -4,6 +4,6 @@ import Controller from './app/controllers/UsersController';
 const routes = new Router();
 const baseUrl = '/api/v1/users';
 
-routes.get(baseUrl, Controller.index);
+routes.post(baseUrl, Controller.index);
 
 export default routes;

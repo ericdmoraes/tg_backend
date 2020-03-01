@@ -1,18 +1,20 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    'User',
-    {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password_hash: DataTypes.STRING,
-      password: DataTypes.VIRTUAL,
-      type: DataTypes.INT,
-    },
-    {}
-  );
-  User.associate = models => {
-    // associations can be defined here
-    console.log(models);
-  };
-  return User;
-};
+import Sequelize, { Model } from 'sequelize';
+
+class User extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        name: Sequelize.STRING,
+        email: Sequelize.STRING,
+        password_hash: Sequelize.STRING,
+        password: Sequelize.VIRTUAL,
+        teacher: Sequelize.BOOLEAN,
+      },
+      {
+        sequelize,
+      }
+    );
+  }
+}
+
+export default User;

@@ -19,9 +19,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      type: {
+      teacher: {
         allowNull: false,
-        type: Sequelize.INT,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
