@@ -1,12 +1,27 @@
 // Services
-import { getAllUsers } from '../../utils/services/UsersServices';
+import {
+  getAllUsers as getUsers,
+  saveNewUser,
+} from '../../utils/services/UsersServices';
+
+// TODO: Remove later
+import User from '../models/user';
 
 class UsersController {
   async index(req, res) {
     const { condition, fields } = req.body;
-    const [users, usersError] = await getAllUsers(fields, condition);
-    if (usersError) return res.status(500).json(usersError);
-    return res.json(users);
+    console.log(req.decoded);
+    const [users, usersError] = await getUsers(fields, condition);
+    if (usersError) return res.status(500).json({ error: usersError });
+    return res.json({ response: users });
+  }
+
+  async store(req, res) {
+    const { data } = req.body;
+    const [createdUser, createdError] = await saveNewUser(data);
+    if (createdError)
+      return res.status(500).json({ error: createdError.errors[0].message });
+    return res.json({ response: createdUser });
   }
 }
 

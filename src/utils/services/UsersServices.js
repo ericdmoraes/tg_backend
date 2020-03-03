@@ -1,8 +1,18 @@
 // Model
 import User from '../../app/models/user';
 
-export const t = () => {
-  return 0;
+/**
+ *
+ * @param {Object} data
+ */
+export const saveNewUser = async data => {
+  try {
+    const userCreated = await User.create(data);
+
+    return [userCreated, false];
+  } catch (error) {
+    return [false, error];
+  }
 };
 
 /**
