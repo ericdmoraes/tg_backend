@@ -4,9 +4,6 @@ import {
   saveNewUser,
 } from '../../utils/services/UsersServices';
 
-// TODO: Remove later
-import User from '../models/user';
-
 class UsersController {
   async index(req, res) {
     const { condition, fields } = req.body;

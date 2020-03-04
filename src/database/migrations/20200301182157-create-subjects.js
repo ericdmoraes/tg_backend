@@ -15,6 +15,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -33,6 +43,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.dropTable('subjects');
+    return queryInterface.dropTable('Subjects');
   },
 };
