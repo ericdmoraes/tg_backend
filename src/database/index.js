@@ -4,8 +4,11 @@ import configDatabase from '../config/database';
 // models
 import User from '../app/models/user';
 import Subject from '../app/models/subject';
+import Topic from '../app/models/topic';
+import Test from '../app/models/test';
+import Question from '../app/models/question';
 
-const models = [User, Subject];
+const models = [User, Subject, Topic, Test, Question];
 
 class Database {
   constructor() {
