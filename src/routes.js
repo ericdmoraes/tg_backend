@@ -10,6 +10,7 @@ import SessionController from './app/controllers/SessionController';
 import SubjectController from './app/controllers/SubjectController';
 import TopicController from './app/controllers/TopicController';
 import TestController from './app/controllers/TestController';
+import QuestionController from './app/controllers/QuestionController';
 
 // Router
 const routes = new Router();
@@ -35,5 +36,7 @@ routes.post(`${baseUrl}/subject/`, isTeacher, SubjectController.store);
 routes.post(`${baseUrl}/topic/`, isTeacher, TopicController.store);
 // Create test
 routes.post(`${baseUrl}/test/`, isTeacher, TestController.store);
+// Create question
+routes.post(`${baseUrl}/question/`, isTeacher, QuestionController.store);
 
 export default routes;

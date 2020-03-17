@@ -6,17 +6,17 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.createTable('Test_Has_Questions', {
+    return queryInterface.createTable('Question_Has_Topic', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      test_id: {
+      topic_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Tests',
+          model: 'Topics',
           key: 'id',
         },
         onUpdate: 'CASCADE',
@@ -51,6 +51,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.dropTable('Test_Has_Questions');
+    return queryInterface.dropTable('Question_Has_Topic');
   },
 };
