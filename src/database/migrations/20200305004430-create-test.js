@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      questions_quantitity: {
+      questions_quantity: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },

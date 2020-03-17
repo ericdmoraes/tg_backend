@@ -4,7 +4,7 @@ class Test extends Model {
   static init(sequelize) {
     super.init(
       {
-        questions_quantitity: Sequelize.INTEGER,
+        questions_quantity: Sequelize.INTEGER,
       },
       {
         sequelize,
