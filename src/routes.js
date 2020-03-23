@@ -37,6 +37,10 @@ routes.post(`${baseUrl}/topic/`, isTeacher, TopicController.store);
 // Create test
 routes.post(`${baseUrl}/test/`, isTeacher, TestController.store);
 // Create question
-routes.post(`${baseUrl}/question/`, isTeacher, QuestionController.store);
+routes.post(
+  `${baseUrl}/:test_id/question/`,
+  isTeacher,
+  QuestionController.store
+);
 
 export default routes;
