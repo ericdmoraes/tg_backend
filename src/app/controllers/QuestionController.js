@@ -1,22 +1,29 @@
 // Services
 import { createQuestion } from '../../utils/services/QuestionsServices';
 import { findTestById } from '../../utils/services/TestService';
+import { findTopicById } from '../../utils/services/TopicService';
 
 class QuestionController {
   async store(req, res) {
-    const { test_id } = req.params;
+    const { test_id, topic_id, questions } = req.body;
 
     const [testRes, testErr] = await findTestById(test_id);
+    const [topicRes, topicErr] = await findTopicById(topic_id);
 
-    if (!testErr) {
+    if (!testErr && !topicErr) {
       const [questionRes, questionErr] = await createQuestion(
-        req.body,
-        testRes
+        questions,
+        testRes,
+        topicRes
       );
+
       if (!questionErr) return res.json(questionRes);
       return res.json(questionErr);
     }
-    return res.json(testErr);
+    if (testErr) {
+      return res.json(testErr);
+    }
+    return res.json(topicErr);
   }
 }
 

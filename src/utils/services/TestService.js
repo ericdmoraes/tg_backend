@@ -3,15 +3,11 @@ import Test from '../../app/models/test';
 
 export const findTestById = async id => {
   try {
-    const res = await Test.findAll({
-      where: {
-        id,
-      },
-    });
+    const res = await Test.findByPk(id);
 
     return [res, false];
   } catch (error) {
-    return [false, true];
+    return [false, error];
   }
 };
 

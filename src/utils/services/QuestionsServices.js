@@ -4,16 +4,18 @@ export const t = () => {
   return null;
 };
 
-export const createQuestion = async (data, testModel) => {
-  console.log('data', data);
-  console.log('data', testModel);
+export const createQuestion = async (data, testModel, topicModel) => {
   try {
     const res = await Question.bulkCreate(data);
 
-    console.log('res', res);
-    const t = await testModel.addQuestion(res[0]);
+    res.map(async r => {
+      await testModel.addQuestion(r);
+      await topicModel.addQuestion(r);
+    });
+
     return [res, false];
   } catch (error) {
     return [false, error];
   }
+  // return [null, false];
 };

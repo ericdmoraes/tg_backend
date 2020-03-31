@@ -28,6 +28,11 @@ class Question extends Model {
       through: 'Test_Has_Questions',
       as: 'test',
     });
+    this.belongsToMany(models.Topic, {
+      foreignKey: 'question_id',
+      through: 'Question_has_Topic',
+      as: 'topic',
+    });
   }
 }
 export default Question;
