@@ -1,5 +1,8 @@
 // Services
-import { createQuestion } from '../../utils/services/QuestionsServices';
+import {
+  createQuestion,
+  getAllQuestions,
+} from '../../utils/services/QuestionsServices';
 import { findTestById } from '../../utils/services/TestService';
 import { findTopicById } from '../../utils/services/TopicService';
 
@@ -24,6 +27,15 @@ class QuestionController {
       return res.json(testErr);
     }
     return res.json(topicErr);
+  }
+
+  async index(req, res) {
+    const { condition, fields } = req.body;
+
+    const [questions, questionsErr] = await getAllQuestions(condition, fields);
+
+    if (!questionsErr) return res.json(questions);
+    return res.status(500).json(questionsErr);
   }
 }
 

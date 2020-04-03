@@ -11,6 +11,19 @@ export const findTestById = async id => {
   }
 };
 
+export const getAllTests = async (condition, fields) => {
+  try {
+    const tests = await Test.findAll({
+      attributes: fields,
+      where: condition,
+    });
+
+    return [tests, false];
+  } catch (error) {
+    return [false, error];
+  }
+};
+
 export const createTest = async data => {
   try {
     const testCreated = await Test.create(data);

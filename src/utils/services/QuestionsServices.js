@@ -1,7 +1,15 @@
 import Question from '../../app/models/question';
 
-export const t = () => {
-  return null;
+export const getAllQuestions = async (condition = null, fields = null) => {
+  try {
+    const questions = await Question.findAll();
+
+    console.log('here =>', questions);
+
+    return [questions, false];
+  } catch (error) {
+    return [false, error];
+  }
 };
 
 export const createQuestion = async (data, testModel, topicModel) => {

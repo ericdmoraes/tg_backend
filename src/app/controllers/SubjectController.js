@@ -1,5 +1,5 @@
 // Services
-import { createSubject } from '../../utils/services/SubjecService';
+import { createSubject, getSubjects } from '../../utils/services/SubjecService';
 
 class SubjectController {
   async store(req, res) {
@@ -11,16 +11,20 @@ class SubjectController {
     };
 
     if (teacher) {
-      try {
-        const [createdSubject, errorCreated] = await createSubject(data);
-        if (errorCreated) return res.status(500).json(errorCreated);
-
-        return res.json(createdSubject);
-      } catch (error) {
-        return res.status(501).json(error);
-      }
+      const [createdSubject, errorCreated] = await createSubject(data);
+      if (errorCreated) return res.status(500).json(errorCreated);
+      return res.json(createdSubject);
     }
     return res.json(401).json({ error: 'You are not a teacher!' });
+  }
+
+  async index(req, res) {
+    const { condition, fields } = req.body;
+
+    const [sub, subErr] = await getSubjects(condition, fields);
+
+    if (!subErr) return res.json(sub);
+    return res.json(subErr);
   }
 }
 

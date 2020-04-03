@@ -16,27 +16,36 @@ import QuestionController from './app/controllers/QuestionController';
 const routes = new Router();
 
 // Base URL
-const baseUrl = '/api/v1';
+const basePrefix = '/api/v1';
 
 // #region no auth routes
 // Users
-routes.post(`${baseUrl}/users/create`, UserController.store);
+routes.post(`${basePrefix}/users/create`, UserController.store);
 // Session
-routes.post(`${baseUrl}/session`, SessionController.store);
+routes.post(`${basePrefix}/session`, SessionController.store);
 // #endregion no auth routes
 
 // #region auth routes
 routes.use(authMiddleware);
-// List users
-routes.post(`${baseUrl}/users/`, UserController.index);
 
-// Create subject
-routes.post(`${baseUrl}/subject/`, isTeacher, SubjectController.store);
-// Create topic
-routes.post(`${baseUrl}/topic/`, isTeacher, TopicController.store);
-// Create test
-routes.post(`${baseUrl}/test/`, isTeacher, TestController.store);
-// Create question
-routes.post(`${baseUrl}/question/`, isTeacher, QuestionController.store);
+// Users
+routes.post(`${basePrefix}/users/`, UserController.index);
+
+// Subjects
+routes.post(`${basePrefix}/subject/`, isTeacher, SubjectController.store);
+routes.post(`${basePrefix}/subject/list`, isTeacher, SubjectController.index);
+
+// Topics
+routes.post(`${basePrefix}/topic/`, isTeacher, TopicController.store);
+routes.post(`${basePrefix}/topic/list`, isTeacher, TopicController.index);
+
+// Tests
+routes.post(`${basePrefix}/test/`, isTeacher, TestController.store);
+routes.post(`${basePrefix}/test/list`, isTeacher, TestController.index);
+
+// Questions
+routes.post(`${basePrefix}/question/`, isTeacher, QuestionController.store);
+routes.post(`${basePrefix}/question/list`, isTeacher, QuestionController.index);
+// #endregion auth routes
 
 export default routes;

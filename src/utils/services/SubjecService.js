@@ -1,8 +1,17 @@
 // Models
 import Subject from '../../app/models/subject';
 
-export const t = () => {
-  return null;
+export const getSubjects = async (condition = null, fields = null) => {
+  try {
+    const sub = await Subject.findAll({
+      attributes: fields,
+      where: condition,
+    });
+
+    return [sub, false];
+  } catch (error) {
+    return [false, error];
+  }
 };
 
 export const createSubject = async data => {

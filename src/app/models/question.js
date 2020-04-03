@@ -22,7 +22,7 @@ class Question extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Subject, { foreignKey: 'subject_id', as: 'subject' });
+    // this.belongsTo(models.Subject, { foreignKey: 'subject_id', as: 'subject' });
     this.belongsToMany(models.Test, {
       foreignKey: 'question_id',
       through: 'Test_Has_Questions',
@@ -30,7 +30,7 @@ class Question extends Model {
     });
     this.belongsToMany(models.Topic, {
       foreignKey: 'question_id',
-      through: 'Question_has_Topic',
+      through: 'Question_Has_Topic',
       as: 'topic',
     });
   }
