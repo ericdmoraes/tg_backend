@@ -6,23 +6,21 @@ import { authSecret } from '../../config/auth';
 import { getAllUsers as getUsers } from '../../utils/services/UsersServices';
 
 // TODO: Remove later
-import Users from '../models/user';
-
 class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
     const [user, userError] = await getUsers(null, { email });
 
     if (!user) {
-      return res.json(userError);
+      return res.status(500).json(userError);
     }
 
     if (user.length > 0 && !(await user[0].checkPassword(password))) {
-      return res.json({ error: 'Usuário ou Senha incorreta' });
+      return res.status(500).json({ error: 'Usuário ou Senha incorreta' });
     }
 
     if (user.length === 0)
-      return res.json({ error: 'Usuário ou senha incorretos' });
+      return res.status(500).json({ error: 'Usuário ou senha incorretos' });
 
     const { id, name, teacher } = user[0];
 
@@ -30,8 +28,10 @@ class SessionController {
       user: {
         id,
         name,
+        email,
+        teacher,
       },
-      token: jwt.sign({ id, teacher, email }, authSecret, {
+      token: jwt.sign({ id, teacher, email, name }, authSecret, {
         expiresIn: '7d',
       }),
     });

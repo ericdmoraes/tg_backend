@@ -19,6 +19,9 @@ const routes = new Router();
 const basePrefix = '/api/v1';
 
 // #region no auth routes
+routes.get('/teste', (req, res) => {
+  return res.json({ ok: 'ok' });
+});
 // Users
 routes.post(`${basePrefix}/users/create`, UserController.store);
 // Session

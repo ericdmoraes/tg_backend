@@ -5,7 +5,7 @@ import { authSecret } from '../../config/auth';
 export default async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  if (!authHeader) return res.json({ error: 'Token not provided' });
+  if (!authHeader) return res.status(500).json({ error: 'Token not provided' });
 
   const [, bearer] = authHeader.split(' ');
 
