@@ -4,8 +4,6 @@ export const getAllQuestions = async (condition = null, fields = null) => {
   try {
     const questions = await Question.findAll();
 
-    console.log('here =>', questions);
-
     return [questions, false];
   } catch (error) {
     return [false, error];
