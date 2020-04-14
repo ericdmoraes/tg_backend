@@ -33,7 +33,7 @@ export const saveNewUser = async ({ name, email, teacher }) => {
       },
       (err, token) => {
         if (!err) {
-          const status = sendEmail(token, email, password);
+          sendEmail(token, email, password);
         }
       }
     );

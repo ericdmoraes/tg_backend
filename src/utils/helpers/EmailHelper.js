@@ -8,14 +8,11 @@ export const t = () => {
 };
 
 export const sendEmail = (token, email, password) => {
-  const url = 'www.google.com';
-
   return transporter.sendMail({
     to: email,
     html: `Obrigado por registrar-se no nosso site.
-      Por favor clique na URL abaixo para confirmar seu endereço
-      de e-mail e ativar sua conta.
-      <br><p>Sua senha temporaria é: <b>${password}</b></p><br>
-      <br><a href="${url}">CLIQUE AQUI</a><br>`,
+      Por favor, use esta senha para efetuar login no site.
+      <br><p>Sua senha é: <b>${password}</b></p><br>
+      <br><a href="${process.env.BASE_URL}">CLIQUE AQUI PARA VOLTAR PARA O SITE</a><br>`,
   });
 };
