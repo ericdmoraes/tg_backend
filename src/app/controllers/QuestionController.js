@@ -30,12 +30,21 @@ class QuestionController {
   }
 
   async index(req, res) {
-    const { condition, fields } = req.body;
+    const { condition, fields, test_id } = req.body;
 
-    const [questions, questionsErr] = await getAllQuestions(condition, fields);
+    const [testRes, testErr] = await findTestById(test_id);
 
-    if (!questionsErr) return res.json(questions);
-    return res.status(500).json(questionsErr);
+    if (!testErr) {
+      const [questions, questionsErr] = await getAllQuestions(
+        condition,
+        fields,
+        testRes
+      );
+
+      if (!questionsErr) return res.json(questions);
+      return res.status(500).json(questionsErr);
+    }
+    return res.json(testErr);
   }
 }
 

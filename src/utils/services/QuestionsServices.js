@@ -1,10 +1,19 @@
 import Question from '../../app/models/question';
 
-export const getAllQuestions = async (condition = null, fields = null) => {
+export const getAllQuestions = async (
+  condition = null,
+  fields = null,
+  test
+) => {
   try {
-    const questions = await Question.findAll();
+    // const questions = await Question.findAll({
+    //   where: condition,
+    //   attributes: fields,
+    // });
 
-    return [questions, false];
+    const t = await test.getQuestion();
+
+    return [t, false];
   } catch (error) {
     return [false, error];
   }
