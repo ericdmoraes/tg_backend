@@ -15,8 +15,8 @@ class UsersController {
   async store(req, res) {
     const [createdUser, createdError] = await saveNewUser(req.body);
     if (createdError)
-      return res.status(500).json({ error: createdError.errors[0].message });
-    return res.json({ response: createdUser });
+      return res.status(400).json(createdError.errors[0].message);
+    return res.json(createdUser);
   }
 }
 

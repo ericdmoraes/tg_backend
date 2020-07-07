@@ -38,7 +38,7 @@ export const saveNewUser = async ({ name, email, teacher }) => {
       }
     );
 
-    return [true, false];
+    return [userCreated, false];
   } catch (error) {
     return [false, error];
   }

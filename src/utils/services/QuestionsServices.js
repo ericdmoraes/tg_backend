@@ -32,5 +32,4 @@ export const createQuestion = async (data, testModel, topicModel) => {
   } catch (error) {
     return [false, error];
   }
-  // return [null, false];
 };
