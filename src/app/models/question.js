@@ -22,7 +22,6 @@ class Question extends Model {
   }
 
   static associate(models) {
-    // this.belongsTo(models.Subject, { foreignKey: 'subject_id', as: 'subject' });
     this.belongsToMany(models.Test, {
       foreignKey: 'question_id',
       through: 'Test_Has_Questions',
