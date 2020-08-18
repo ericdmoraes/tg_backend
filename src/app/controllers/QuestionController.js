@@ -21,10 +21,11 @@ class QuestionController {
       );
 
       if (!questionErr) return res.json(questionRes);
-      return res.json(questionErr);
+
+      return res.status(401).json(questionErr);
     }
     if (testErr) {
-      return res.json(testErr);
+      return res.status(401).json(testErr);
     }
     return res.json(topicErr);
   }

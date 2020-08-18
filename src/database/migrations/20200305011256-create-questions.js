@@ -15,22 +15,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.ENUM('1', '2', '3', '4', '5'),
       },
-      options_a: {
-        type: Sequelize.STRING,
+      options: {
+        type: Sequelize.ARRAY(Sequelize.TEXT),
       },
-      options_b: {
-        type: Sequelize.STRING,
-      },
-      options_c: {
-        type: Sequelize.STRING,
-      },
-      options_d: {
-        type: Sequelize.STRING,
-      },
-      options_e: {
-        type: Sequelize.STRING,
-      },
-      correct_option: {
+      correct_option_id: {
         allowNull: false,
         type: Sequelize.STRING,
       },
