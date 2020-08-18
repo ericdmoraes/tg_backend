@@ -17,6 +17,11 @@ class Subject extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'user_id' });
+    this.belongsToMany(models.Subject, {
+      foreignKey: 'subject_id',
+      through: 'Student_Has_Subject',
+      as: 'user',
+    });
   }
 }
 export default Subject;

@@ -19,9 +19,6 @@ const routes = new Router();
 const basePrefix = '/api/v1';
 
 // #region no auth routes
-routes.get('/teste', (req, res) => {
-  return res.json({ ok: 'ok' });
-});
 // Users
 routes.post(`${basePrefix}/users/create`, UserController.store);
 // Session
@@ -36,7 +33,7 @@ routes.post(`${basePrefix}/users/`, UserController.index);
 
 // Subjects
 routes.post(`${basePrefix}/subject/`, isTeacher, SubjectController.store);
-routes.post(`${basePrefix}/subject/list`, isTeacher, SubjectController.index);
+routes.post(`${basePrefix}/subject/list`, SubjectController.index);
 
 // Topics
 routes.post(`${basePrefix}/topic/`, isTeacher, TopicController.store);

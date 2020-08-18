@@ -24,6 +24,14 @@ class User extends Model {
     return this;
   }
 
+  static associate(models) {
+    this.belongsToMany(models.Subject, {
+      foreignKey: 'user_id',
+      through: 'Student_Has_Subject',
+      as: 'subject',
+    });
+  }
+
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }
