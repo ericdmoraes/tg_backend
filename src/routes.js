@@ -5,12 +5,13 @@ import authMiddleware from './app/middlewares/auth';
 import isTeacher from './app/middlewares/isTeacher';
 
 // Controllers
-import UserController from './app/controllers/UsersController';
+import SubscribeController from './app/controllers/SubscribeController';
+import QuestionController from './app/controllers/QuestionController';
 import SessionController from './app/controllers/SessionController';
 import SubjectController from './app/controllers/SubjectController';
 import TopicController from './app/controllers/TopicController';
+import UserController from './app/controllers/UsersController';
 import TestController from './app/controllers/TestController';
-import QuestionController from './app/controllers/QuestionController';
 
 // Router
 const routes = new Router();
@@ -46,6 +47,10 @@ routes.post(`${basePrefix}/test/list`, isTeacher, TestController.index);
 // Questions
 routes.post(`${basePrefix}/question/`, isTeacher, QuestionController.store);
 routes.post(`${basePrefix}/question/list`, isTeacher, QuestionController.index);
+
+// Subscriptions
+routes.post(`${basePrefix}/subscribe/`, SubscribeController.store);
+
 // #endregion auth routes
 
 export default routes;

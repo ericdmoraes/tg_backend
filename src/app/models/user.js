@@ -26,7 +26,7 @@ class User extends Model {
 
   static associate(models) {
     this.belongsToMany(models.Subject, {
-      foreignKey: 'user_id',
+      foreignKey: 'student_id',
       through: 'Student_Has_Subject',
       as: 'subject',
     });

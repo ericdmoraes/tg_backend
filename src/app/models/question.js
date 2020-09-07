@@ -23,6 +23,7 @@ class Question extends Model {
       through: 'Test_Has_Questions',
       as: 'test',
     });
+
     this.belongsToMany(models.Topic, {
       foreignKey: 'question_id',
       through: 'Question_Has_Topic',

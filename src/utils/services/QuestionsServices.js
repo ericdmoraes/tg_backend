@@ -1,16 +1,7 @@
 import Question from '../../app/models/question';
 
-export const getAllQuestions = async (
-  condition = null,
-  fields = null,
-  test
-) => {
+export const getAllQuestions = async test => {
   try {
-    // const questions = await Question.findAll({
-    //   where: condition,
-    //   attributes: fields,
-    // });
-
     const t = await test.getQuestion();
 
     return [t, false];
@@ -23,6 +14,7 @@ export const createQuestion = async (data, testModel, topicModel) => {
   try {
     const res = await Question.bulkCreate(data);
 
+    console.log('res', testModel, topicModel);
     res.map(async r => {
       await testModel.addQuestion(r);
       await topicModel.addQuestion(r);

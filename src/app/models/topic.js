@@ -16,6 +16,7 @@ class Topic extends Model {
 
   static associate(models) {
     this.belongsTo(models.Subject, { foreignKey: 'subject_id' });
+
     this.belongsToMany(models.Question, {
       foreignKey: 'topic_id',
       through: 'Question_Has_Topic',
