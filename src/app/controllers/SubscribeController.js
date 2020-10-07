@@ -1,5 +1,8 @@
 // Services
-import { SubscribeStudentToSubject } from '../../utils/services/SubscribeService';
+import {
+  SubscribeStudentToSubject,
+  listUserSubscribes,
+} from '../../utils/services/SubscribeService';
 
 class SubscribeController {
   async store(req, res) {
@@ -15,6 +18,15 @@ class SubscribeController {
     }
 
     return res.json({ errRes });
+  }
+
+  async index(req, res) {
+    const { student_id } = req.body;
+    const [response, error] = await listUserSubscribes(student_id);
+
+    if (!error) return res.json(response);
+
+    return res.json(error);
   }
 }
 

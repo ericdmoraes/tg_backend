@@ -50,6 +50,7 @@ routes.post(`${basePrefix}/question/list`, isTeacher, QuestionController.index);
 
 // Subscriptions
 routes.post(`${basePrefix}/subscribe/`, SubscribeController.store);
+routes.post(`${basePrefix}/subscribe/list`, SubscribeController.index);
 
 // #endregion auth routes
 

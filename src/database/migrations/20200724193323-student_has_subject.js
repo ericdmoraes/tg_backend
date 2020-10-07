@@ -6,7 +6,7 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.createTable('Student_Has_Subject', {
+    return queryInterface.createTable('Subscribes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -51,6 +51,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.dropTable('Student_Has_Subject');
+    return queryInterface.dropTable('Subscribes');
   },
 };

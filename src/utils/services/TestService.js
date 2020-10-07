@@ -26,7 +26,7 @@ export const getAllTests = async (condition, fields) => {
 
 export const createTest = async data => {
   try {
-    console.log(data);
+    console.log(typeof data);
     const testCreated = await Test.create(data);
 
     return [testCreated, false];
